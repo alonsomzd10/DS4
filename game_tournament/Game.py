@@ -3,6 +3,7 @@ Docstring for game_tournament.Game
 Game class represents a game in the tournament. It has a name, a sport, and a list of teams.
 """
 import random
+import json
 from Team import Team
 from Sport import Sport
 from Athlete import Athlete
@@ -34,17 +35,37 @@ class Game:
     def __str__(self):
         """ String representation of the Game class. """
         return f"{self.team_a.name} vs {self.team_b.name} - Score: {self.score[self.team_a.name]}:{self.score[self.team_b.name]}"
-    
+    def __repr__(self):
+        """ String representation of the Game class. """
+        return f"Game(team_a={repr(self.team_a)}, team_b={repr(self.team_b)}, score={self.score})"
+    def to_json(self):
+        """ Convert the Game object to a JSON string. """
+        return {
+            "team_a": self.team_a.to_json(),
+            "team_b": self.team_b.to_json(),
+            "score": self.score
+        }
+
+def a_game():
+    """ Example usage of the Game class. """
+    players_mex = ['Chicharito','Piojo','Guardado','Hector Moreno','Rafa Marquez','Salcido','Vela','Dos Santos','Herrera','Layun','Corona']
+    players_arg = ['Messi','Di Maria','Aguero','Higuain','Mascherano','Biglia','Dybala','Paredes','Tagliafico','Otamendi','Zabaleta']
+    sport = Sport("Futbol", 11, "FIFA")
+    team_mex = Team("Mexico", sport)
+    team_arg = Team("Argentina", sport)
+    for player in players_mex:
+        team_mex.add_athlete(Athlete(player))
+    for player in players_arg:
+        team_arg.add_athlete(Athlete(player))
+    game = Game(team_mex, team_arg)
+    game_string = game.to_json()
+    return game_string
+
+def save_game_to_json(game_data, filename):
+    """ Save the game object to a JSON file. """
+    with open(filename, 'w', encoding='utf-8') as f:
+        json.dump(game_data, f, indent=4)
+
 if __name__ == "__main__":
-    a = Athlete("Lionel Messi")
-    b = Athlete("Diego Armando")
-    s = Sport("Futbol",11,"FIFA")
-    argentina  = Team("Argentina",s)
-    argentina.add_athlete(a)
-    argentina.add_athlete(b)
-    brazil = Team("Brazil",s)
-    brazil.add_athlete(Athlete("Pelé"))
-    brazil.add_athlete(Athlete("Zico"))
-    game = Game(argentina, brazil)
-    game.play()
-    print(game)
+    string_game = a_game()
+    save_game_to_json(string_game, "game.json")
