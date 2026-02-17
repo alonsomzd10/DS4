@@ -66,6 +66,8 @@ def save_game_to_json(game_data, filename):
     with open(filename, 'w', encoding='utf-8') as f:
         json.dump(game_data, f, indent=4)
 
+
 if __name__ == "__main__":
     string_game = a_game()
     save_game_to_json(string_game, "game.json")
+    print(string_game)
