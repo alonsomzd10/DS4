@@ -1,6 +1,6 @@
 """ 
 | Athlete class representing a player in the tournament. | """
-import random 
+import random
 
 class  Athlete:
     """ Athlete class representing a player in the tournament. """
