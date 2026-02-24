@@ -75,6 +75,13 @@ class Tournament:
                 for player in players:
                     team.add_athlete(Athlete(player))
                 self.add_team(team)
+    def display_tournament(self):
+        """ Display the tournament. """
+        print(f"Tournament: {self.name}")
+        for group in self.groups:
+            self.groups[group].display_group()
+        for group in self.groups:
+            self.groups[group].display_group_games()
 
 if __name__ == "__main__":
     tournament = Tournament("FIFA World Cup")
