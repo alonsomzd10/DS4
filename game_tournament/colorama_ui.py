@@ -1,4 +1,7 @@
 """ Text user interface for the tournament """
+import os
+import colorama
+from Tournament import Tournament
 from colorama import Fore, Back, Style, init
 init(autoreset=True)
 
@@ -50,3 +53,7 @@ class ColoramaUI:
         """ Exit the application """
         print("Exiting application...")
         exit()
+
+if __name__ == "__main__":
+    ui = ColoramaUI()
+    ui.run()
