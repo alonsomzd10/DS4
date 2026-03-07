@@ -83,4 +83,9 @@ class Group:
                 self.points[game.team_b]["goals_against"] += game.score[game.team_a.name]
                 self.points[game.team_a]["goal_difference"] += game.score[game.team_a.name] - game.score[game.team_b.name]
                 self.points[game.team_b]["goal_difference"] += game.score[game.team_b.name] - game.score[game.team_a.name]
-            
+    def display_standings(self):
+        """ Display the standings of the group. """
+        print(f"Group: {self.name}")
+        print(f"{'Team':<20} {'Points':<2} {'Wins':<2} {'Losses':<2} {'Draws':<2} {'Goals For':<2} {'Goals Against':<2} {'Goal Difference':<2}")
+        for team, stats in self.points.items():
+            print(f"{str(team.name):<20} {stats['points']:2} {stats['wins']:2} {stats['losses']:2} {stats['draws']:2} {stats['goals_for']}:{stats['goals_against']} {stats['goal_difference']:2}")
