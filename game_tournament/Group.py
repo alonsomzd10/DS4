@@ -52,35 +52,35 @@ class Group:
         """ Play the group games. """
         for game in self.games:
             game.play()
-            if game.score[self.team_a.name] > game.score[self.team_b.name]:
+            if game.score[game.team_a.name] > game.score[game.team_b.name]:
                 self.points[game.team_a]["points"] += 3
                 self.points[game.team_a]["wins"] += 1
                 self.points[game.team_b]["losses"] += 1
-                self.points[game.team_a]["goals_for"] += game.score[self.team_a.name]
-                self.points[game.team_a]["goals_against"] += game.score[self.team_b.name]
-                self.points[game.team_b]["goals_for"] += game.score[self.team_b.name]
-                self.points[game.team_b]["goals_against"] += game.score[self.team_a.name]
-                self.points[game.team_a]["goal_difference"] += game.score[self.team_a.name] - game.score[self.team_b.name]
-                self.points[game.team_b]["goal_difference"] += game.score[self.team_b.name] - game.score[self.team_a.name]
-            elif game.score[self.team_a.name] < game.score[self.team_b.name]:
+                self.points[game.team_a]["goals_for"] += game.score[game.team_a.name]
+                self.points[game.team_a]["goals_against"] += game.score[game.team_b.name]
+                self.points[game.team_b]["goals_for"] += game.score[game.team_b.name]
+                self.points[game.team_b]["goals_against"] += game.score[game.team_a.name]
+                self.points[game.team_a]["goal_difference"] += game.score[game.team_a.name] - game.score[game.team_b.name]
+                self.points[game.team_b]["goal_difference"] += game.score[game.team_b.name] - game.score[game.team_a.name]
+            elif game.score[game.team_a.name] < game.score[game.team_b.name]:
                 self.points[game.team_b]["points"] += 3
                 self.points[game.team_b]["wins"] += 1
                 self.points[game.team_a]["losses"] += 1
-                self.points[game.team_b]["goals_for"] += game.score[self.team_b.name]
-                self.points[game.team_b]["goals_against"] += game.score[self.team_a.name]
-                self.points[game.team_a]["goals_for"] += game.score[self.team_a.name]
-                self.points[game.team_a]["goals_against"] += game.score[self.team_b.name]
-                self.points[game.team_b]["goal_difference"] += game.score[self.team_b.name] - game.score[self.team_a.name]
-                self.points[game.team_a]["goal_difference"] += game.score[self.team_a.name] - game.score[self.team_b.name]
+                self.points[game.team_b]["goals_for"] += game.score[game.team_b.name]
+                self.points[game.team_b]["goals_against"] += game.score[game.team_a.name]
+                self.points[game.team_a]["goals_for"] += game.score[game.team_a.name]
+                self.points[game.team_a]["goals_against"] += game.score[game.team_b.name]
+                self.points[game.team_b]["goal_difference"] += game.score[game.team_b.name] - game.score[game.team_a.name]
+                self.points[game.team_a]["goal_difference"] += game.score[game.team_a.name] - game.score[game.team_b.name]
             else:
                 self.points[game.team_a]["points"] += 1
                 self.points[game.team_a]["draws"] += 1
                 self.points[game.team_b]["points"] += 1
                 self.points[game.team_b]["draws"] += 1
-                self.points[game.team_a]["goals_for"] += game.score[self.team_a.name]
-                self.points[game.team_a]["goals_against"] += game.score[self.team_b.name]
-                self.points[game.team_b]["goals_for"] += game.score[self.team_b.name]
-                self.points[game.team_b]["goals_against"] += game.score[self.team_a.name]
-                self.points[game.team_a]["goal_difference"] += game.score[self.team_a.name] - game.score[self.team_b.name]
-                self.points[game.team_b]["goal_difference"] += game.score[self.team_b.name] - game.score[self.team_a.name]
+                self.points[game.team_a]["goals_for"] += game.score[game.team_a.name]
+                self.points[game.team_a]["goals_against"] += game.score[game.team_b.name]
+                self.points[game.team_b]["goals_for"] += game.score[game.team_b.name]
+                self.points[game.team_b]["goals_against"] += game.score[game.team_a.name]
+                self.points[game.team_a]["goal_difference"] += game.score[game.team_a.name] - game.score[game.team_b.name]
+                self.points[game.team_b]["goal_difference"] += game.score[game.team_b.name] - game.score[game.team_a.name]
             
