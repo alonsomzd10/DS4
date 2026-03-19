@@ -2,6 +2,7 @@ from textual.app import App, ComposeResult
 from textual.widgets import Header, Footer, Button, Static
 from textual.containers import Vertical, VerticalScroll
 from textual.screen import Screen
+from textual.widgets import DirectoryTree
 import os
 from Tournament import Tournament
 import random
@@ -101,11 +102,11 @@ class TextualUI(App):
         yield Header()
         with Vertical(id="menu-container"):
             yield Button("Load Tournament", id="load")
-            yield Button("Tournament", id="tournament")
+            yield Button("Tournament", id="display")
             yield Button("Groups", id="groups")
             yield Button("Games", id="games")
             yield Button("Play", id="play")
-            yield Button("Quit", id="quit")
+            yield Button("Quit", id="exit")
         yield Footer()  
     def action_load(self):
         self.get_tournament_json()
@@ -121,6 +122,13 @@ class TextualUI(App):
         self.exit_app()
     def set_current_file(self, file_path:str):
         self.current_file = file_path
+    def get_tournament_json(self):
+        def on_file_selected(file_path: str | None) -> None:
+            if file_path:
+                self.current_file = file_path
+                self.notify(f"Tournament file selected: {self.current_file}")
+                self.open_tournament()
+        self.push_screen(FileSelectorScreen(), callback=on_file_selected)
     def open_tournament(self):
         if self.current_file and os.path.exists(self.current_file):
             self.tournament = Tournament("Tournament")
@@ -335,6 +343,14 @@ class PlayGamesScreen(Screen):
                     yield Static(f"  {winner}")
 
         yield Footer()
+
+class FileSelectorScreen(Screen):
+    def compose(self) -> ComposeResult:
+        yield DirectoryTree("./")
+        yield Footer()
+
+    def on_directory_tree_file_selected(self, event: DirectoryTree.FileSelected) -> None:
+        self.dismiss(str(event.path))
 
 if __name__ == "__main__":
     app = TextualUI()
