@@ -78,7 +78,7 @@ def buscar_palabras(frases:list, frase_a_buscar:str)->list:
     for frase in frases:
         frase_lower = frase.frase.lower()
         ratio = Levenshtein.ratio(frase_lower, frase_a_buscar)
-        if ratio >=0.80:
+        if ratio >=0.50:
             frase.ratio = ratio
             frases_encontradas.append(frase)
     return frases_encontradas
@@ -92,7 +92,7 @@ if __name__ == "__main__":
     for frase in lista_frase_amor:
         print(frase)
     print("############ Levensthein ############")
-    lista_frase_amor = buscar_palabras(frases, "la vida y la muerte")
+    lista_frase_amor = buscar_palabras(frases, "Las palabras nos pueden hacer infinitamente ")
     for frase in lista_frase_amor:
         print(frase, frase.ratio)
     
