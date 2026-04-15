@@ -1,4 +1,4 @@
-from Flask import Flask, render_template
+from flask import Flask, render_template, request
 from frases_celebres import Frase, carga_archivo_csv, crea_diccionario_titulos, buscar_palabras
 
 app = Flask(__name__)
