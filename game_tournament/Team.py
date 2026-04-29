@@ -1,8 +1,8 @@
 """
 Docstring for game_tournament.Team
 """
-from athlete import Athlete
-from sport import Sport
+from Athlete import Athlete
+from Sport import Sport
 
 class Team:
     """ Team class represents a team in the tournament. It has a name, a sport, and a list of athletes. """

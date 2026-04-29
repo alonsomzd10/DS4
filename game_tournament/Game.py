@@ -4,9 +4,9 @@ Game class represents a game in the tournament. It has a name, a sport, and a li
 """
 import random
 import json
-from team import Team
-from sport import Sport
-from athlete import Athlete
+from Team import Team
+from Sport import Sport
+from Athlete import Athlete
 
 
 class Game:
@@ -38,6 +38,15 @@ class Game:
             0, Sport.max_score[self.team_a.sport.name])
         self.score[self.team_b.name] = random.randint(
             0, Sport.max_score[self.team_b.sport.name])
+        if self.score[self.team_a.name] > self.score[self.team_b.name]:
+            self.winner = self.team_a
+            self.loser = self.team_b
+        elif self.score[self.team_a.name] < self.score[self.team_b.name]:
+            self.winner = self.team_b
+            self.loser = self.team_a
+        else:
+            self.winner = None
+            self.loser = None
 
     def __str__(self):
         """ String representation of the Game class. """

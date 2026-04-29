@@ -1,7 +1,7 @@
 """ Text user interface for the tournament """
 import os
 import colorama
-from tournament import Tournament
+from Tournament import Tournament
 from colorama import Fore, Back, Style, init
 init(autoreset=False)
 
@@ -125,4 +125,8 @@ if __name__ == "__main__":
     ui = ColoramaUI()
     ui.set_current_file("tournament.json")
     ui.open_tournament()
+<<<<<<< HEAD
     ui.run()
+=======
+    ui.run()
+>>>>>>> upstream/master
